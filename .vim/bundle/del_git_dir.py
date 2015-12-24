@@ -4,8 +4,9 @@ import sys
 import os
 
 if len(sys.argv) != 2:
-    print 'error'
-    print 'usage: ', sys.argv[0], ' <dir>'
+    print 'parameter error !'
+    print 'usage:', sys.argv[0], ' <dir>'
+    exit()
 
 for dir in os.listdir(sys.argv[1]):
     if os.path.isdir(dir):

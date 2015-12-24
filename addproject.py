@@ -4,8 +4,9 @@ import sys
 import os
 
 if len(sys.argv) != 3:
-    print 'error'
-    print 'usage: ', sys.argv[0], ' <project name> <source dir>'
+    print 'parameter error!'
+    print 'usage:', sys.argv[0], ' <project name> <source dir>'
+    exit()
 
 project_path = os.getcwd() + '/' + sys.argv[2]
 name = '[' + sys.argv[1] + ']'
