@@ -1,4 +1,4 @@
-let mapleader=";"
+let mapleader="'"
 filetype on
 filetype plugin on
 " 设置快捷键将选中文本块复制至系统剪贴板
@@ -32,6 +32,8 @@ set tabstop=4
 set shiftwidth=4
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=4
+" 粘贴模式
+set pastetoggle=<F4>
 
 " 基于缩进或语法进行代码折叠
 set foldmethod=indent
