@@ -58,6 +58,8 @@ let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 " 快捷键 i 开/关缩进可视化
 :nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+" install vim-gtk(vim-nox) or uncomment next line
+" colorscheme default
 
 " vim-signature
 let g:SignatureMap = {
