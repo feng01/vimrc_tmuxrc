@@ -51,7 +51,7 @@ execute pathogen#infect()
 
 " Indent Guides
 " 随 vim 自启动
-let g:indent_guides_enable_on_vim_startup=1
+" let g:indent_guides_enable_on_vim_startup=1
 " 从第二层开始可视化显示缩进
 let g:indent_guides_start_level=2
 " 色块宽度
@@ -85,9 +85,9 @@ let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v 
 
 " tagbar
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边 
-let tagbar_left=1 
+let tagbar_right=1 
 " 设置显示／隐藏标签列表子窗口的快捷键 
-nnoremap <f2> :TagbarToggle<CR> 
+nnoremap <f3> :TagbarToggle<CR> 
 " 设置标签子窗口的宽度 
 let tagbar_width=32 
 " tagbar 子窗口中不显示冗余帮助信息 
@@ -138,11 +138,11 @@ nnoremap <Leader>ff :CtrlSF<CR>
 
 " NerdTree
 " 使用 NERDTree 插件查看工程文件。设置快捷键
-nmap <f3> :NERDTreeToggle<CR>
+nmap <f2> :NERDTreeToggle<CR>
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=32
 " 设置NERDTree子窗口位置
-let NERDTreeWinPos="right"
+let NERDTreeWinPos="left"
 " 显示隐藏文件
 let NERDTreeShowHidden=1
 " NERDTree 子窗口中不显示冗余帮助信息
