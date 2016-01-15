@@ -1,6 +1,8 @@
-let mapleader="'"
+let mapleader=";"
 filetype on
 filetype plugin on
+set encoding=utf-8
+set noswapfile
 " 设置快捷键将选中文本块复制至系统剪贴板
 vnoremap <Leader>y "+y
 " 设置快捷键将系统剪贴板内容粘贴至 vim
@@ -18,6 +20,8 @@ set ruler
 set number
 " 高亮显示搜索结果
 set hlsearch
+" 高亮显示当前行
+" set cursorline
 " 开启语法高亮功能
 syntax enable
 " 允许用指定语法高亮配色方案替换默认方案
@@ -86,6 +90,8 @@ let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v 
 " tagbar
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边 
 let tagbar_right=1 
+" 按照在源码中出现的顺序排列
+let g:tagbar_sort = 0
 " 设置显示／隐藏标签列表子窗口的快捷键 
 nnoremap <f3> :TagbarToggle<CR> 
 " 设置标签子窗口的宽度 
@@ -154,14 +160,6 @@ let NERDTreeAutoDeleteBuffer=1
 " I（大写），显示/隐藏隐藏文件
 " m，出现创建/删除/剪切/拷贝操作列表
 
-" MiniBufExplorer
-let g:miniBufExplMapCTabSwitchBufs = 1
-" 显示/隐藏 MiniBufExplorer 窗口
-" map <Leader>bl :MBEToggle<cr>
-" buffer 切换快捷键
-" map <C-Tab> :MBEbn<cr>
-" map <C-S-Tab> :MBEbp<cr>
-
 " autoclose
 let g:autoclose_vim_commentmode = 1
 
@@ -178,8 +176,26 @@ let g:syntastic_check_on_wq = 0
 set updatetime=250
 
 " Omnicppcomplete
-set completeopt=menuone,menu,longest
+set completeopt=menuone,menu
+let OmniCpp_SelectFirstItem = 2
+highlight Pmenu    ctermbg=darkgrey  ctermfg=black
+highlight PmenuSel ctermbg=lightgrey ctermfg=black
 
 " vim-airline
 " 设置主题栏风格
-set t_Co=256
+" set t_Co=256
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader><tab> :bnext<CR>
+let g:airline#extensions#tabline#tab_nr_type = 1
+nmap <leader>d :bdelete<CR>
