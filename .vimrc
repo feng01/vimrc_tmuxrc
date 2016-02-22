@@ -1,6 +1,7 @@
 let mapleader=";"
 filetype on
 filetype plugin on
+set mouse=a
 set encoding=utf-8
 set noswapfile
 " 设置快捷键将选中文本块复制至系统剪贴板
@@ -53,18 +54,6 @@ runtime bundle/pathogen/autoload/pathogen.vim
 " 运行 pathogen
 execute pathogen#infect()
 
-" Indent Guides
-" 随 vim 自启动
-" let g:indent_guides_enable_on_vim_startup=1
-" 从第二层开始可视化显示缩进
-let g:indent_guides_start_level=2
-" 色块宽度
-let g:indent_guides_guide_size=1
-" 快捷键 i 开/关缩进可视化
-:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
-" install vim-gtk(vim-nox) or uncomment next line
-" colorscheme default
-
 " vim-signature
 let g:SignatureMap = {
         \ 'Leader'             :  "m",
@@ -86,55 +75,11 @@ nmap <Leader>tp :tprevious<CR>
 " 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
 " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
 let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
-
-" tagbar
-" 设置 tagbar 子窗口的位置出现在主编辑区的左边 
-let tagbar_right=1 
-" 按照在源码中出现的顺序排列
-let g:tagbar_sort = 0
-" 设置显示／隐藏标签列表子窗口的快捷键 
-nnoremap <f3> :TagbarToggle<CR> 
-" 设置标签子窗口的宽度 
-let tagbar_width=32 
-" tagbar 子窗口中不显示冗余帮助信息 
-let g:tagbar_compact=1
-" 设置 ctags 对哪些代码元素生成标签
-let g:tagbar_type_cpp = {
-    \ 'kinds' : [
-        \ 'd:macros:1',
-        \ 'g:enums',
-        \ 't:typedefs:0:0',
-        \ 'e:enumerators:0:0',
-        \ 'n:namespaces',
-        \ 'c:classes',
-        \ 's:structs',
-        \ 'u:unions',
-        \ 'f:functions',
-        \ 'm:members:0:0',
-        \ 'v:global:0:0',
-        \ 'x:external:0:0',
-        \ 'l:local:0:0'
-     \ ],
-     \ 'sro'        : '::',
-     \ 'kind2scope' : {
-         \ 'g' : 'enum',
-         \ 'n' : 'namespace',
-         \ 'c' : 'class',
-         \ 's' : 'struct',
-         \ 'u' : 'union'
-     \ },
-     \ 'scope2kind' : {
-         \ 'enum'      : 'g',
-         \ 'namespace' : 'n',
-         \ 'class'     : 'c',
-         \ 'struct'    : 's',
-         \ 'union'     : 'u'
-     \ }
-\ }
+let g:indexer_dontUpdateTagsIfFileExists=1
 
 " ctrlsf.vim
-" 使用 ctrlsf.vim 插件在工程内全局查找光标所在关键字，设置快捷键。快捷键速记法：search in project
-nnoremap <Leader>ff :CtrlSF<CR>
+" 使用 ctrlsf.vim 插件在工程内全局查找光标所在关键字，设置快捷键。
+nnoremap <Leader>f :CtrlSF
 " 键入 p 键，将在右侧子窗口中给出该匹配项的完整代码
 " 如果有钟意的项，光标定位该项后回车，立即跳至新 buffer 中对应位置
 
@@ -144,11 +89,11 @@ nnoremap <Leader>ff :CtrlSF<CR>
 
 " NerdTree
 " 使用 NERDTree 插件查看工程文件。设置快捷键
-nmap <f2> :NERDTreeToggle<CR>
+nmap <f3> :NERDTreeToggle<CR>
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=32
 " 设置NERDTree子窗口位置
-let NERDTreeWinPos="left"
+let NERDTreeWinPos="right"
 " 显示隐藏文件
 let NERDTreeShowHidden=1
 " NERDTree 子窗口中不显示冗余帮助信息
@@ -169,15 +114,17 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " vim-gitgutter
-set updatetime=250
+" set updatetime=250
 
 " Omnicppcomplete
 set completeopt=menuone,menu
 let OmniCpp_SelectFirstItem = 2
+" 自动关闭补全窗口
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 highlight Pmenu    ctermbg=darkgrey  ctermfg=black
 highlight PmenuSel ctermbg=lightgrey ctermfg=black
 
@@ -185,7 +132,11 @@ highlight PmenuSel ctermbg=lightgrey ctermfg=black
 " 设置主题栏风格
 " set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tmuxline#enabled = 1
+"let g:airline#extensions#tabline#tab_nr_type = 1
+"let g:airline#extensions#tmuxline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_min_count = 2 
+"let g:airline#extensions#tabline#tab_min_count = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -197,5 +148,10 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader><tab> :bnext<CR>
-let g:airline#extensions#tabline#tab_nr_type = 1
 nmap <leader>d :bdelete<CR>
+
+" taglist
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_GainFocus_On_ToggleOpen=1
+nmap <f2> :TlistToggle<CR>
