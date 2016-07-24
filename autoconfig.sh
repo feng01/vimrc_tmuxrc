@@ -1,3 +1,4 @@
+# Auto config vim and tmux
 #!/bin/bash
 
 backup() {
