@@ -4,10 +4,12 @@ filetype plugin on
 set mouse=a
 set encoding=utf-8
 set noswapfile
+" 默认使用系统剪切板
+set clipboard=unnamed
 " 设置快捷键将选中文本块复制至系统剪贴板
-vnoremap <Leader>y "+y
+" vnoremap <Leader>y "+y
 " 设置快捷键将系统剪贴板内容粘贴至 vim
-nmap <Leader>p "+p
+" nmap <Leader>p "+p
 set incsearch
 " 关闭兼容模式
 set nocompatible
@@ -117,8 +119,10 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+" vim-signify
+" let g:signify_vcs_list = ['git']
+
 " vim-gitgutter
-" set updatetime=250
 
 " Omnicppcomplete
 set completeopt=menuone,menu
