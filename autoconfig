@@ -1,8 +1,6 @@
 # Auto config vim and tmux
 #!/bin/bash
 
-PWD=`pwd`
-
 backup() {
     echo "Backup previous config file..."
     if [ -f "~/.vimrc" ]; then
@@ -42,17 +40,17 @@ check_package_manager(){
 }
 
 install_tools() {
-   for soft in ack-grep ctags tmux vim git
-   do
-   	if ! which $soft > /dev/null;then
-   		echo "$soft not found,going to install it."
-       		if check_package_manager apt;then
-        		apt-get -y install $soft
-        	elif check_package_manager yum;then
-               		yum -y install $soft
-        	fi
-   	fi
-   done
+    for soft in ack-grep ctags tmux vim git
+    do
+        if ! which $soft > /dev/null;then
+            echo "$soft not found,going to install it."
+            if check_package_manager apt;then
+                apt-get -y install $soft
+            elif check_package_manager yum;then
+                yum -y install $soft
+            fi
+        fi
+    done
 }
 
 config_vim() {

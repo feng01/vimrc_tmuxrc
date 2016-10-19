@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+WORK_PATH=`pwd`
+
+cd ${WORK_PATH}/vim/bundle/
+DIRS=`ls`
+
+for dir in ${DIRS}
+do
+    echo "Check ${dir} ..."
+    cd ${WORK_PATH}/vim/bundle/${dir}
+    if [ -d "git" ];then
+        mv git .git
+        git pull origin master
+        mv .git git
+    fi
+done
+
+echo "Done !"
